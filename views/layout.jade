@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(charset="utf-8")
+  body
+    div(id="main")
+      header
+        h1=title
+
+        if user
+           a(href="/users")= user.name
+      nav
+        ul
+          li
+            a(href="/") home
+          if !user
+              li
+                a(href="/login") login
+              li
+                a(href="/register") register
+          else
+              li
+                  a(href="/post") post
+              li
+                  a(href="/upload") upload
+              li
+                  a(href="/logout") logout
+          li
+            a(href="/about") about
+      article
+        block content

@@ -1,0 +1,18 @@
+//
+   Created by Administrator on 2015/11/13.
+extends layout
+block content
+   form(method='post')
+      span 用户名:
+      input(type='text',name='name')
+      br
+      span 密码:
+      input(type='password',name='password')
+      br
+      span 确认密码:
+      input(type='password',name='password-repeat')
+      br
+      span 邮箱:
+      input(type='email',name='email')
+      br
+      input(type='submit' value='注册')

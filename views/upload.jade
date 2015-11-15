@@ -1,0 +1,9 @@
+//
+   Created by Administrator on 2015/11/14.
+
+extends layout
+block content
+   form(method='post',action='/upload',enctype='multipart/form-data')
+      input(type='file',name='file1')
+      br
+      input(type='submit',value='上传')

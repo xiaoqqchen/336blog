@@ -1,0 +1,20 @@
+extends layout
+
+block content
+   if articles
+      each value,index in articles
+         p
+         h2
+            a(href='post/#{value.title}')=value.title
+         .info
+             p
+             | 作者：
+             span=value.name
+             |  | 日期：
+             span=value.formatDate
+             p
+         | !{value.post}
+
+   else
+      p='无内容'
+
