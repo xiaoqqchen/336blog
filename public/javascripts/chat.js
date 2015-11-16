@@ -2,6 +2,7 @@
  * Created by PC on 2015/11/16.
  */
 $(document).ready(function() {
+
     var socket = io.connect();
     var from = $.cookie('user');
     var contents = $('#contents');
@@ -30,17 +31,21 @@ $(document).ready(function() {
         var start = $('<div>');
         message.html(data.user+"("+ $.getNow()+")说: "+data.msg);
         contents.append(start).append(message).append('<br/>');
+        if(Notification.permission==='granted' && document.hidden && data.user!==from){
+            var notification = new Notification(data.user,{body:data.msg});
+        }
+        console.log(document.hidden);
         //使页面滚动到'start'处
         start[0].scrollIntoView();
     });
 
     var callback = function(){
         var msg = $('#input_content').html();
-        if(msg == "" || msg == "请输入..."){
+        if(msg == "" || msg.trim() == "请输入..."){
             return;
         }
         socket.emit('chat',{msg:msg,user:from});
-        $("#input_content").html("").focus();
+        $('#input_content').html("").focus();
     };
 
     $("#say").click(callback);
@@ -51,8 +56,6 @@ $(document).ready(function() {
         }
     }).focus(function(){
         $("#input_content").empty();
-    }).blur(function(){
-        $("#input_content").html("请输入...");
     });
 
     function flushUsers(users){
@@ -61,8 +64,10 @@ $(document).ready(function() {
             $('#list').append($('<li>').text(i));
         }
     };
-});
 
+    Notification.requestPermission();
+
+});
 $.extend({
     getNow: function (){
         var date = new Date();
