@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var multer  = require('multer');
 
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var login = require('./routes/login');
@@ -15,6 +16,8 @@ var about = require('./routes/about');
 var logout = require('./routes/logout');
 var post = require('./routes/post');
 var upload = require('./routes/upload');
+var chat = require('./routes/chat');
+
 
 var setting = require('./setting');
 
@@ -51,6 +54,8 @@ app.use('/about',about);
 app.use('/logout',logout);
 app.use('/post',post);
 app.use('/upload',upload);
+app.use('/chat',chat);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

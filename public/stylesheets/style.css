@@ -89,3 +89,58 @@ article a:hover{
   color: #fff;
   background-color: #f00;
 }
+
+#content {
+  height: 600px;
+  position: absolute;
+  width: 600px;
+}
+
+#content_show {
+  position: absolute;
+  height: 500px;
+  width: 600px;
+  background: aliceblue;
+}
+
+#input_content {
+  width: 500px;
+  height: 100px;
+}
+
+#say {
+
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  line-height: 100px;
+  text-align: center;
+  font-size: 24px;
+  color: #00B7FF;
+  background-color: #eef;
+}
+
+#say:hover {
+  background-color: #00B7FF;
+  color: #fff;
+}
+
+#user_online {
+  position: absolute;
+  right: 0;
+  width: 200px;
+  top: 20px;
+  bottom: 0;
+  background: #FFEFEF;
+  height: 600px;
+}
+
+#content_saying {
+  position: absolute;
+  top: 500px;
+  height: 100px;
+  width: 600px;
+  background-color: #eee;
+}

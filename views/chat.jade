@@ -2,8 +2,25 @@
    Created by Administrator on 2015/11/15.
 
 extends layout
+
 block content
+    #content
+        #content_show
+            #contents
+        #content_saying
+            #input_content(contenteditable='true')
+            #say='发送'
+    #user_online
+        #usersbar
+            #user_label='在线用户'
+            #user_list
+                ul(id='list')
+    // script.
+        var url = 'http://'+socketUrl.host+":"+socketUrl.port;
+    script(type="text/javascript",src="/socket.io/socket.io.js")
+    script(type="text/javascript",src="/javascripts/jquery-2.0.3.min.js")
+    script(type="text/javascript",src="/javascripts/chat.js")
 
 
 
-   script(type="text/javascript",src="../public/")
+
