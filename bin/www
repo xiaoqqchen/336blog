@@ -22,7 +22,7 @@ app.set('port', port);
 
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
-var users = [];
+var users = {};
 io.sockets.on('connection', function (socket) {
   socket.on('online', function (data) {
     socket.name = data.user;
@@ -30,6 +30,13 @@ io.sockets.on('connection', function (socket) {
       users[data.user] = data.user;
     }
     io.sockets.emit('online', {users: users, user: data.user});
+  });
+
+  socket.on('disconnect', function (data) {
+    if (users[socket.name]) {
+      delete users[socket.name];
+      socket.broadcast.emit('offline', {users: users, user: socket.name});
+    }
   });
 
   socket.on('chat', function (data) {

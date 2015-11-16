@@ -5,11 +5,24 @@ $(document).ready(function() {
     var socket = io.connect();
     var from = $.cookie('user');
     var contents = $('#contents');
+
     socket.emit('online',{user:from});
     socket.on('online',function(data){
         var message = $('<div>');
+        var start = $('<div>');
         message.css('color','#f00').text("("+ $.getNow()+"): "+data.user+"进入了聊天室");
-        $('#contents').append(message).append('<br/>');
+        $('#contents').append(start).append(message).append('<br/>');
+        start[0].scrollIntoView();
+        flushUsers(data.users);
+    });
+
+    socket.on('offline',function(data){
+        var message = $('<div>');
+        var start = $('<div>');
+        message.css('color','#f00').text("("+ $.getNow()+"): "+data.user+"下线了");
+        $('#contents').append(start).append(message).append('<br/>');
+        start[0].scrollIntoView();
+        flushUsers(data.users);
     });
 
     socket.on('chat',function(data){
@@ -23,7 +36,7 @@ $(document).ready(function() {
 
     var callback = function(){
         var msg = $('#input_content').html();
-        if(msg == ""){
+        if(msg == "" || msg == "请输入..."){
             return;
         }
         socket.emit('chat',{msg:msg,user:from});
@@ -36,7 +49,18 @@ $(document).ready(function() {
         if(event.keyCode==13){
             callback();
         }
+    }).focus(function(){
+        $("#input_content").empty();
+    }).blur(function(){
+        $("#input_content").html("请输入...");
     });
+
+    function flushUsers(users){
+        $('#list').empty();
+        for(var i in users){
+            $('#list').append($('<li>').text(i));
+        }
+    };
 });
 
 $.extend({
