@@ -24,6 +24,7 @@ router.post('',function(req,res,next){
             return;
         }
         req.session.user = user;
+        res.cookie("user", req.session.user.name, {maxAge: 1000*60*60*24*30});
         res.redirect('/');
 /*        res.render('',{
             title:'登录成功！',

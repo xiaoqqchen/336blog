@@ -101,11 +101,13 @@ article a:hover{
   height: 500px;
   width: 600px;
   background: aliceblue;
+  overflow: auto;
 }
 
 #input_content {
   width: 500px;
   height: 100px;
+  overflow: auto;
 }
 
 #say {

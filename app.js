@@ -40,7 +40,7 @@ app.use(session({
   saveUninitialized: true
 }));
 app.use(multer({
-  dest: '../public/images/',
+  dest: '../public/uploadImages/',
     rename: function (fieldname, filename) {
         return filename;
     }

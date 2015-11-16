@@ -22,11 +22,18 @@ app.set('port', port);
 
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
-
+var users = [];
 io.sockets.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
+  socket.on('online', function (data) {
+    socket.name = data.user;
+    if (!users[data.user]) {
+      users[data.user] = data.user;
+    }
+    io.sockets.emit('online', {users: users, user: data.user});
+  });
+
+  socket.on('chat', function (data) {
+    io.sockets.emit('chat', data);
   });
 });
 /**

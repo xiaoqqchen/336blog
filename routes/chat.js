@@ -5,12 +5,12 @@ var express = require('express');
 var setting = require('../setting');
 var router = express.Router();
 
-/*router.get('',function (req, res, next) {
+router.get('',function (req, res, next) {
     if (!req.session.user) {
         res.redirect('/login');
     }
     next();
-});*/
+});
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('chat',{
