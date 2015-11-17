@@ -110,6 +110,9 @@ article a:hover{
   overflow: auto;
 }
 
+#input_content:hover {
+  background-color: #aaa;
+}
 #say {
 
   width: 100px;

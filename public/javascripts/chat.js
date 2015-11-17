@@ -33,8 +33,13 @@ $(document).ready(function() {
         contents.append(start).append(message).append('<br/>');
         if(Notification.permission==='granted' && document.hidden && data.user!==from){
             var notification = new Notification(data.user,{body:data.msg});
+            //消息2秒后自动消失
+            notification.onshow = function(){
+                setTimeout(function(){
+                    notification.close();
+                },2000);
+            }
         }
-        console.log(document.hidden);
         //使页面滚动到'start'处
         start[0].scrollIntoView();
     });

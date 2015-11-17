@@ -15,8 +15,7 @@ router.get('',function (req, res, next) {
 router.get('/', function(req, res, next) {
     res.render('chat',{
         'title':'聊天室',
-        user:req.session.user,
-        socketUrl:setting
+        user:req.session.user
     });
 });
 
